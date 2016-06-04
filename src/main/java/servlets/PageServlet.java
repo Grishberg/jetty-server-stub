@@ -16,8 +16,6 @@ import java.util.ArrayList;
  */
 public class PageServlet extends BaseHttpServlet{
     public static final String PAGE_URL = "/pages";
-    public static final String PAGE = "page";
-    public static final String TOKEN = "token";
     public static final int PAGE_SIZE = 10;
 
     public PageServlet(AccountService accountService) {
@@ -26,14 +24,12 @@ public class PageServlet extends BaseHttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int page = getPage(req);
-        String token = req.getParameter(TOKEN);
-
-        if(!getAccountService().checkToken(token)){
-            resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            resp.getWriter().println(GSON.toJson(new PageResponse(PageResponse.INVALID_ACCESS_TOKEN)));
+        if(!checkAuth(req, resp)){
             return;
         }
+
+        int page = getPage(req);
+
 
         ArrayList<DataModel> data = new ArrayList<>();
         for(int i = page * PAGE_SIZE; i< (page + 1) * PAGE_SIZE; i++){
