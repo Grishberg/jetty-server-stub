@@ -36,7 +36,7 @@ public class Main {
     public static final int PAGE_SIZE = 30;
 
     public static void main(String[] args) throws Exception {
-        System.setProperty("log4j.configurationFile", "cfg/log4j2.xml");
+        System.setProperty("log4j.configurationFile", "log4j2.xml");
         logger = LogManager.getLogger(Main.class.getName());
 
         AccountService accountService = new AccountSercviceImpl();
