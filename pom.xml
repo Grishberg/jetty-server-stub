@@ -181,6 +181,7 @@
             <version>2.3.23</version>
         </dependency>
 
+        <!-- JSONRPC2 -->
         <dependency>
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>jsonrpc2-base</artifactId>
